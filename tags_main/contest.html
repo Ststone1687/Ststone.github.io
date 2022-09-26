@@ -6,7 +6,8 @@
     <meta name="keywords" content="Ststone">
     <meta name="description" content="Ststone">
     <title>Ststone的廢文專區</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://ststone1687.github.io/style.css" rel="stylesheet" type="text/css" />
+    <!--<link href="style.css" rel="stylesheet" type="text/css" />-->
     <link rel="icon" href="https://media.discordapp.net/attachments/713379026487476235/894112352746754058/17897108_p0_master1200.png?width=758&height=670" />
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
@@ -21,23 +22,16 @@
     </div>
     <div class="middle">
       <div class="left" id="left">
-        <div>
-          <h2>About</h2>
-          <div style="padding:20%">
-            <img class="head_img" src="https://media.discordapp.net/attachments/713379026487476235/990549911827251231/unknown.png">
-          </div>
-          <h2>Ststone</h2>
-          <a>我啥都不會</a>
-          <br><br>
-        </div>
-        <div id="tags">
-
-        </div>
+        <div id="tags"></div>
       </div>
       <div id="right" class="main_page">
       </div>
     </div>
     <div id="footer"></div>
-    <script src="script.js"></script>
+    <script>
+        document.getElementById("right").innerHTML='<object type="text/html" data="contest_content.html" class="main"></object>';
+        document.getElementById("tags").innerHTML='<object type="text/html" data="https://ststone1687.github.io/tags.html" class="new_tags"></object>';
+        document.getElementById("footer").innerHTML='<object type="text/html" data="https://ststone1687.github.io/footer.html" class="footer"></object>';
+    </script>
   </body>
 </html>

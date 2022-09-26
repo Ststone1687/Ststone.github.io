@@ -231,7 +231,7 @@ body{
   cursor: pointer;
 }
 .tags{
-  height: 200px;
+  height: 300px;
   width: 600px;
 }
 .footer{
@@ -256,5 +256,5 @@ body::-webkit-scrollbar {
   display: none;
 }
 .new_tags{
-  height: 600;
+  height: 600px;
 }
