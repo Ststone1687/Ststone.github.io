@@ -232,7 +232,7 @@ body{
 }
 .tags{
   height: 200px;
-  width: 600px;
+  width: 350px;
 }
 .footer{
   background-color: black;
@@ -257,4 +257,7 @@ body::-webkit-scrollbar {
 }
 .new_tags{
   height: 600px;
+}
+.mouse_on:hover{
+  cursor: pointer;
 }
