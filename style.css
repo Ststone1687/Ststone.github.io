@@ -33,6 +33,7 @@ body{
   color: rgb(141,146,151);
   text-align: left;
   padding: 5px;
+  height: 800px;
 }
 .all_contest>a{
   color: rgb(141, 85, 66);
@@ -283,6 +284,11 @@ body::-webkit-scrollbar {
 }
 @media only screen and (min-width: 0px) and (max-width: 500px) {
   .new_height{
+    height: 300px;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 500px) {
+  .new_contest{
     height: 300px;
   }
 }
