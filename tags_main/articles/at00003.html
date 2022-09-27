@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Ststone">
+    <meta name="description" content="Ststone">
+    <title>Ststone的廢文專區</title>
+    <link href="https://ststone1687.github.io/style.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="https://media.discordapp.net/attachments/713379026487476235/894112352746754058/17897108_p0_master1200.png?width=758&height=670" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>    
+  </head>
+  <body>
+    <div class="left_main_page">
+        <div class="chunk">
+            <div class="chunk_title">
+                <div class="chunk_title_left">
+                    <div class="chunk_title_line"></div>
+                    <div class="chunk_title_line"></div>
+                    <div class="chunk_title_line"></div>
+                </div>
+                <div class="chunk_title_text">
+                    <h3 class="chunk_title_text_ch" style="white-space:pre;">Codeforces Round #823 (Div.2) 心得文</h3>
+                </div>
+                <div class="chunk_title_right">
+                    <div class="chunk_title_line"></div>
+                    <div class="chunk_title_line"></div>
+                    <div class="chunk_title_line"></div>
+                </div>
+            </div>
+            <div>
+                <div class="c_black">
+                    <br><br>
+                    <a>
+                        這麼詭異的場不能只有我看到.jpg。<br><br>
+                        Final standing：164/12167<br><br>
+                        我這場的最終排名連我自己也覺得很詭異，這場pA是簡單的greedy，pB想法題但也可以無腦砸，C就是觀察+greedy，D也需要觀察奇怪性質。
+                        E跟F都做出來的人在unrated裡面只有四個，加上這場過C的人數是B的兩倍以上，非常的不尋常。<br><br>
+                        在賽中的時候，我寫完pA看到pB時就心想：「這可以三分搜吧，還給了誤差範圍」，但是由於是pB，還是讓我猶豫了一下才砸，轉眼就浪費掉了
+                        30分鐘，很快地刷完C後，D就開始卡了，前後大概花了一小時在舉例子找性質，大約在一小時半的時候想到了最關鍵的那個性質，不過我還是想不
+                        到要怎麼用他，於是拿了範測給的唯一有用的一筆NO來試，想了很久還是沒結論，仔細檢查了之後發現，是我有地方抄錯了= =，然後改了馬上就
+                        大概猜到了梗是什麼，結果一個簡單的梗被我想得太難，以至於花了太多時間，D過了後大概剩10分鐘，就算了沒繼續寫E跟F了。
+                        我覺得大部分人應該是被B給搞死的，如果換一下順序然後D往前移，我覺得應該會有更多人可以解出D才對，賽後看了一下，感覺D根本沒有2200的難度。<br><br>
+                        稍微講一下我各題的作法：<br><br>
+                        pA. 對每種數字統計總數後greedy決定怎麼扣。<br><br>
+                        pB. 對答案三分搜，每次$O(N)$檢查。<br><br>
+                        pC. 從$i$=1開始取，若$S_j$=i就拿，結束後紀錄$j$的位置，之後$i+1$從$j$開始拿，到最後沒拿的數字+1跟9取max後合併輸出。<br><br>
+                        pD. 假設兩序列是1234跟5678，會發現每次操作後，將兩字串相連接，1-8、2-7、3-6、4-5的位置都會是對稱的，所以若有一組a-b，則必定另存在一組
+                        a-b或b-a，然後a-a也必須是成對出現，除了字串長度為奇數時，可以在中間單獨出現，符合以上條件的必有方法可以交換城一樣的。<br><br>
+                        這場真的怪，但是有上分欸！好欸！<br><br>
+                    </a>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+        <br>
+        <a>post:2022/09/27</a><br><br>
+        <a>last update:2022/09/27</a><br><br>
+        <br><br>
+    </div>
+  </body>
