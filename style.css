@@ -297,3 +297,7 @@ body::-webkit-scrollbar {
     height: 800px;
   }
 }
+.c_black{
+  color: black;
+  white-space:pre; 
+}
