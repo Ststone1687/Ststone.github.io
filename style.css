@@ -231,7 +231,7 @@ body{
   cursor: pointer;
 }
 .tags{
-  height: 200px;
+  height: 300px;
   width: 350px;
 }
 .footer{
@@ -279,5 +279,10 @@ body::-webkit-scrollbar {
 @media only screen and (min-width: 0px) and (max-width: 500px) {
   .long_height{
     height: 500px;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 500px) {
+  .new_height{
+    height: 300px;
   }
 }
