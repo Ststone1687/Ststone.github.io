@@ -292,3 +292,8 @@ body::-webkit-scrollbar {
     height: 300px;
   }
 }
+@media only screen and (min-width: 501px){
+  .old_contest{
+    height: 800px;
+  }
+}
