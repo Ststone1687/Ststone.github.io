@@ -25,8 +25,8 @@ body{
   background-color: grey;
 }
 .head_img{
-  width: 100%;
-  border-radius: 100px;
+  width: 50%;
+  border-radius: 200px;
 }
 .contest{
   background-color: rgb(47,49,54);
@@ -260,4 +260,24 @@ body::-webkit-scrollbar {
 }
 .mouse_on:hover{
   cursor: pointer;
+}
+@media only screen and (min-width: 0px) and (max-width: 500px) {
+  .little_screen_middle{
+    display: inline;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 500px) {
+  .little_head_img{
+    width: 20%;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 500px) {
+  .width_100{
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 500px) {
+  .long_height{
+    height: 500px;
+  }
 }
