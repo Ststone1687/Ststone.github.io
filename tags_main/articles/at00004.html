@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Ststone">
+    <meta name="description" content="Ststone">
+    <title>Ststone的廢文專區</title>
+    <link href="https://ststone1687.github.io/style.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="https://media.discordapp.net/attachments/713379026487476235/894112352746754058/17897108_p0_master1200.png?width=758&height=670" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>    
+  </head>
+  <body>
+    <div class="left_main_page">
+        <br><br>
+        <div class="chunk">
+            <div class="chunk_title">
+                <div class="chunk_title_left">
+                    <div class="chunk_title_line"></div>
+                    <div class="chunk_title_line"></div>
+                    <div class="chunk_title_line"></div>
+                </div>
+                <div class="chunk_title_text">
+                    <h3 class="chunk_title_text_ch" style="white-space:pre;">Zerojudge h789 線段樹之石(Segment Tree Stone) 題解</h3>
+                </div>
+                <div class="chunk_title_right">
+                    <div class="chunk_title_line"></div>
+                    <div class="chunk_title_line"></div>
+                    <div class="chunk_title_line"></div>
+                </div>
+            </div>
+            <div>
+                <div class="c_black">
+                    <br><br>
+                    <a>
+                        題意：給一個序列包含$N$個正整數，分別為$a_1,a_2,...,a_N$，對於任意的$i < j < k$，問有幾組$a_iX+a_jY=a_k$使X,Y存在整數解？<br><br>
+                        最暴力的做法應該是窮舉$i,j,k$然後暴力去檢查，由於同餘的性質，這樣做複雜度會是$O(max(a_i)*N^3)$，這樣顯然會TLE。<br><br>
+                        那有什麼方法可以以優化呢？<br><br>
+                        根據貝祖定理，我們可以知道$ax+by=c$，$x,y$有正數解若且為若$c$是$gcd(a,b)$的倍數。<br><br>
+                        由於$gcd$的複雜度是$log(min(a,b))$，可以將複雜度優化成$O(log(max(a_i))*N^3)$，但是仍會TLE。<br><br>
+                        所以有沒有更快的做法呢？我們可以考慮對這$N$個數做一些預處理。<br><br>
+                        對於找出任意一個數$K$所有的因數，所花費的時間複雜度會是$O(√K)$，於是，我們可以花$O(N √max(a_i))$的時間去預處理所有數字的因數。<br><br>
+                        但是由於要符合$i < j < k$，於是我們必須要動態預處理。<br><br>
+                        我們開一個陣列$arr[t]$來記錄因數有$t$的數字有幾個，跑迴圈時，每次固定$j$跑$i$，跑完後把$j$往前移一個，把原本的$j$用$O(√j)$的時間
+                        將$j$的所有因數加進$arr$陣列中。<br><br>
+                        如此一來，我們便可以在每次選定$i,j$後，算出$gcd(i,j)$的倍數有多少個，並加進答案裡。<br><br>
+                        時間複雜度是$O(log(max(a_i))*N^2)。$<br><br>
+                    </a>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+        <br>
+        <a>post:200/09/29</a><br><br>
+        <a>last update:2022/09/29</a><br><br>
+        <br><br>
+    </div>
+  </body>
