@@ -300,3 +300,6 @@ body::-webkit-scrollbar {
 .c_black{
   color: black;
 }
+input { 
+  text-align: right; 
+}

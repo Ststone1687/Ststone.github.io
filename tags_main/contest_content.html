@@ -33,19 +33,14 @@
                     <div class="chunk_title_line"></div>
                 </div>
             </div>
-            <div class="which_news">
-                <div class="news_icon">
-                    <img src="https://media.discordapp.net/attachments/713379026487476235/1023762235807498260/dice.png?width=663&height=663" width="30" height="30">
-                </div>
-                <div class="news_main">
-                    <div class="news_text_set">
-                        <div><!--<a href="/" class="news_label">news_label</a>--></div>
-                        <a href="https://ststone1687.github.io/tags_main/articles/at00003.html" class="news_title">Codeforces Round #823 (Div.2) 心得文</a>
-                        <time datetime="2022-09-27T15:20:00.000Z" class="news_time">2022.09.27</time>
-                    </div>
-                </div>
-            </div>
+            <div id="add_which_news"></div>
         </div>
+        <button onclick="last_page()"><</button>
+        <input type="text" value="1" class="search" onkeydown="search(this)" id="jump">
+        <button onclick="jump()">submit</button>
+        <button onclick="next_page()">></button>
+        
+        <script src="javascript/contest.js"></script>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
   </body>
