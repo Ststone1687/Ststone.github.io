@@ -303,12 +303,17 @@ body::-webkit-scrollbar {
 input { 
   text-align: center; 
 }
-pre.code
-{
+pre.code{
 	background-color:#FFF1CD;
 	font-family:courier, serif;
 	font-size:10px;
 	font-style:normal;
 	margin:10px;
 	padding:0px
+}
+.code_background{
+  background-color:  rgb(239,240,241);
+  font-weight:bold;
+  border-color: black;
+  border-width: thick;
 }

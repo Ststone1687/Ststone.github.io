@@ -36,7 +36,8 @@
             <div>
                 <div class="c_black">
                     <br><br>
-                    <h3>$\href{https://codeforces.com/}{原題目連結}$</h3>
+                    <h3>$\href{https://yukicoder.me/problems/no/2101}{原題目連結}$</h3>
+                    <h3>題目名稱：如果一直都是這個數列就好了</h3>
                     <hr class="other_links_line">
                     <h3>題目敘述</h3>
                     <a>
@@ -48,110 +49,109 @@
                         而在チェリー所在的世界的日夜變化如下：<br>
                         $\bullet$ 第$0$天夜晚$→$第$1$天白天$→$第$1$天夜晚$→$第$2$天白天$→ ⋯ →$第$(d−1)$天夜晚$→$第$d$天白天$→$第$d$天夜晚$→$第$(d+1)$白天$→ ⋯$
                     </a><br>
-                    <div>
-                        <pre class="prettyprint"><code>
-#pragma GCC optimize("Ofast")
-#pragma GCC optimize(1)
-#pragma GCC optimize(2)
-#pragma GCC optimize(3)
-#pragma GCC target("popcnt")
-#include <bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-typedef string str;
-typedef pair<ll,ll> pii;
-#define F first
-#define S second
-#define pb push_back
-#define pq priority_queue
-#define all(x) (x).begin(),(x).end()
-#define bug(x) cerr << (x) << '\n'
-#define yn(x) cout << (x==1?"Yes\n":"No\n")
-#define PI 3.14159265358979323
-#define Ststone ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
-const ll max_n=2e5+20,max_int=2147483647,mod1=1e9+7,mod2=998244353;
-const bool online = 0;
-ll dx[8] = {1,0,0,-1,1,1,-1,-1};
-ll dy[8] = {0,1,-1,0,1,-1,1,-1};
-ll t,n,q,m,k,a,b,c,d,e,f,x,bit[max_n][3];
-vector<ll> v1,v2,v3,v4;
-vector<pii> v,era,out;
-vector<pair<pii,pii>> ans;
-char cc;
-str s;
-
-void update(ll index,ll dalta,ll num){
-    while(index<=max_n){
-        bit[index][num] += dalta;
-        index += index&(-index);
-    }
-}
-
-ll query(ll index,ll num){
-    ll sum = 0;
-    while(index){
-        sum += bit[index][num];
-        index -= index&(-index);
-    }
-    return sum;
-}
-
-void solve(){
-    cin >> n;
-    for(ll i=1;i<=n;i++){
-        cin >> a >> b;
-        v1.pb(a);
-        v2.pb(b);
-        v.pb({b,i});
-        era.pb({a+b-1,i});
-        update(i,a,0);
-    }
-    cin >> q;
-    for(ll i=0;i<q;i++){
-        cin >> a >> b >> c;
-        ans.pb({{a,i},{b,c}});
-    }
-    sort(all(v));
-    sort(all(era));
-    sort(all(ans));
-    ll l = 0,r = 0;
-    for(ll i=0;i<q;i++){
-        ll x = ans[i].F.F,y = ans[i].S.F,z = ans[i].S.S;
-        while(l<n&&v[l].F<=x){
-            update(v[l].S,v[l].F,1);
-            update(v[l].S,1,2);
-            l++;
+                    <h3>題目大意</h3>
+                    <a>
+                        他會給你個一長度為$N$的序列，序列中的第$i$個位置在時間$T_i$後每天都會固定減少$1$，最小只會變成$0$。給你$Q$筆詢問，問第$d$天時的某段序列總和是多少。
+                    </a><br>
+                    <h3>想法</h3>
+                    <a>
+                        先將$Q$筆詢問用時間順序排好，接著用BIT維護整個序列。如果$d \ge N_i+T_i$，則可以將$N_i$直接移除。否則若$d \ge T_i$，則另外維護一個$T_i$的BIT，
+                        詢問中如果$(N_i+T_i) > d \ge T_i$，則第$i$個位置的大小會是$N_i-((d+1)-T_i)$，假設這樣的位置有$k$個，所以可以得到答案$=$
+                        $($ $SUM_{N_r} - SUM_{N_{l-1}}$ $)$ $-$ $($ $(k×(d+1))$ $-$ $($ $SUM_{T_r} - SUM_{T_{l-1}}$ $)$ $)$，時間複雜度$O(N log N)$。 
+                    </a><br>
+                    <h3>程式碼</h3>
+                    <div class="code_background" style="background-color: rgb(239,240,241); font-weight:bold;">
+                        <pre class="prettyprint">
+<code>
+    #include &lt;bits/stdc++.h&gt;
+    using namespace std;
+    typedef long long ll;
+    typedef string str;
+    typedef pair&lt;ll,ll&gt; pii;
+    #define F first
+    #define S second
+    #define pb push_back
+    #define pq priority_queue
+    #define all(x) (x).begin(),(x).end()
+    #define bug(x) cerr &lt;&lt; (x) &lt;&lt; '\n'
+    #define yn(x) cout &lt;&lt; (x==1?"Yes\n":"No\n")
+    #define PI 3.14159265358979323
+    #define Ststone ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
+    const ll max_n=2e5+20,max_int=2147483647,mod1=1e9+7,mod2=998244353;
+    ll dx[8] = {1,0,0,-1,1,1,-1,-1};
+    ll dy[8] = {0,1,-1,0,1,-1,1,-1};
+    ll t,n,q,m,k,a,b,c,d,e,f,x,bit[max_n][3];
+    vector&lt;ll&gt; v1,v2,v3,v4;
+    vector&lt;pii&gt; v,era,out;
+    vector&lt;pair&lt;pii,pii&gt;&gt; ans;
+    char cc;
+    str s;
+    
+    void update(ll index,ll dalta,ll num){
+        while(index&lt;=max_n){
+            bit[index][num] += dalta;
+            index += index&(-index);
         }
-        while(r<n&&era[r].F<=x){
-            update(era[r].S,-v1[era[r].S-1],0);
-            update(era[r].S,-v2[era[r].S-1],1);
-            update(era[r].S,-1,2);
-            r++;
-        }
-        ll sum = query(z,0)-query(y-1,0) -( (x+1)*(query(z,2)-query(y-1,2)) - (query(z,1)-query(y-1,1)));
-        out.pb({ans[i].F.S,sum});
-    }
-    sort(all(out));
-    for(ll i=0;i<q;i++){
-        cout << out[i].S << '\n';
     }
     
-}
-
-int main(){
-    Ststone;
-    if(online){
-        #ifndef ONLINE_JUDGE
-        freopen("input.txt","r",stdin);
-        freopen("output.txt","w",stdout);
-        #else
-        #endif
+    ll query(ll index,ll num){
+        ll sum = 0;
+        while(index){
+            sum += bit[index][num];
+            index -= index&(-index);
+        }
+        return sum;
     }
-    t = 1;
-    for(ll i=1;i<=t;i++){
-        solve();
+    
+    void solve(){
+        cin &gt;&gt; n;
+        for(ll i=1;i&lt;=n;i++){
+            cin &gt;&gt; a &gt;&gt; b;
+            v1.pb(a);
+            v2.pb(b);
+            v.pb({b,i});
+            era.pb({a+b-1,i});
+            update(i,a,0);
+        }
+        cin &gt;&gt; q;
+        for(ll i=0;i&lt;q;i++){
+            cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+            ans.pb({{a,i},{b,c}});
+        }
+        sort(all(v));
+        sort(all(era));
+        sort(all(ans));
+        ll l = 0,r = 0;
+        for(ll i=0;i&lt;q;i++){
+            ll x = ans[i].F.F,y = ans[i].S.F,z = ans[i].S.S;
+            while(l&lt;n&&v[l].F&lt;=x){
+                update(v[l].S,v[l].F,1);
+                update(v[l].S,1,2);
+                l++;
+            }
+            while(r&lt;n&&era[r].F&lt;=x){
+                update(era[r].S,-v1[era[r].S-1],0);
+                update(era[r].S,-v2[era[r].S-1],1);
+                update(era[r].S,-1,2);
+                r++;
+            }
+            ll sum = query(z,0)-query(y-1,0) -( (x+1)*(query(z,2)-query(y-1,2)) - (query(z,1)-query(y-1,1)));
+            out.pb({ans[i].F.S,sum});
+        }
+        sort(all(out));
+        for(ll i=0;i&lt;q;i++){
+            cout &lt;&lt; out[i].S &lt;&lt; '\n';
+        }
+        
     }
-}
+    
+    int main(){
+        Ststone;
+        t = 1;
+        for(ll i=1;i&lt;=t;i++){
+            solve();
+        }
+    }
 </code>
                         </pre>
                     </div>
@@ -160,8 +160,8 @@ int main(){
             </div>
         </div>
         <br>
-        <a>post://</a><br><br>
-        <a>last update://</a><br><br>
+        <a>post:2022/10/18</a><br><br>
+        <a>last update:2022/10/18</a><br><br>
         <br><br>
     </div>
   </body>
