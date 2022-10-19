@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Ststone">
+    <meta name="description" content="Ststone">
+    <title>Ststone的廢文專區</title>
+    <link href="https://ststone1687.github.io/style.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="https://media.discordapp.net/attachments/713379026487476235/894112352746754058/17897108_p0_master1200.png?width=758&height=670" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>   
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script> 
+  </head>
+  <body>
+    <div class="left_main_page">
+        <br><br>
+        <div class="chunk">
+            <div class="chunk_title">
+                <div class="chunk_title_left">
+                    <div class="chunk_title_line"></div>
+                    <div class="chunk_title_line"></div>
+                    <div class="chunk_title_line"></div>
+                </div>
+                <div class="chunk_title_text">
+                    <h3 class="chunk_title_text_ch" style="white-space:pre;">yukicoder No.2082 AND OR XOR</h3>
+                </div>
+                <div class="chunk_title_right">
+                    <div class="chunk_title_line"></div>
+                    <div class="chunk_title_line"></div>
+                    <div class="chunk_title_line"></div>
+                </div>
+            </div>
+            <div>
+                <div class="c_black">
+                    <br><br>
+                    <h3><a href="https://yukicoder.me/problems/no/2082">原題目連結</a></h3>
+                    <hr class="other_links_line">
+                    <h3>題目敘述</h3>
+                    <a>
+                        對於非負整數的$a,b$，定義一個二元運算子$*$。<br><br>
+                        $\bullet$ $x * y = (A×(x$ $AND$ $y)+B×(x$ $OR$ $y)+C×(x$ $XOR$ $y))$ $mod$ $4$<br><br>
+                        長度為$N$的數列$X$如果滿足以下條件則被稱作$\textbf{好的數列}$。<br><br>
+                        $\bullet$ 每一項都由$0,1,2,3$組成。<br><br>
+                        $\bullet$ $(...((X_1*X_2)*X_3)*...)*X_N = (...((X_N*X_{N-1})*X_{N-2})*...)*X_1$成立。<br><br>
+                        求$\textbf{好的數列}$的個數，由於答案可能會很大，所以請取除以$998244353$的餘數後出。<br><br>
+                    </a><br>
+                    <h3>想法</h3>
+                    <a>
+                        這個問題可以用dp來處理，雖然$N=5000$，但是這題的複雜度不是$O(N^2)$而是$O(N×4^4)$。<br><br>
+                        首先可以定義三個數列$P,X,R$，$X$代表任意的$\textbf{好的數列}$，然後滿足：<br><br>
+                        $1.$ $P_{i-1} * X_i = P_i$<br><br>
+                        $2.$ $R_i * X_i = R_{i-1}$<br><br>
+                        而若$R_1 = P_N = Y$，則$(...((X_1*X_2)*X_3)*...)*X_N = (...((X_N*X_{N-1})*X_{N-2})*...)*X_1$成立。<br><br>
+                        於是可以定義狀態$dp[i][j][k]$代表在位置$i$時，$P_i=j$且$R_i=k$有解。<br><br>
+                        假設$(...((X_1*X_2)*X_3)*...)*X_N = Y$，接著窮舉$Y$。<br><br>
+                        因為$P_1*X_2 = P_2$且$R_2*X_2 = R_1$，且$R_1 = Y$，然後可以列出初始狀態：<br><br>
+                        $dp[1][j][k] = \begin{cases}1 & ,  j*k=Y \\ 0 & , Otherwise \end{cases}$<br><br>
+                        接著可以列出轉移$dp[i][P_i][R_i] += \begin{cases}dp[i-1][P_{i-1}][R_{i-1}] & ,  P_{i-1}*X_{i}=P_{i} \quad and \quad R_{i}*X_{i}=R_{i-1} \\ 0 & ,  Otherwise \end{cases}$<br><br>
+                        因為$P_{N-1}*X_N = P_N$且$R_{N}*X_N = R_{N-1}$，且$P_N = Y$。<br><br>
+                        所以最後需要檢查所有的$P_{N-1} * R_{N-1} = Y$，把滿足條件的$dp[N-1][P_{N-1}][R_{N-1}]$加起來就會是答案了。<br><br>
+                    </a><br>
+                    <br><br>
+                    <h3>程式碼</h3>
+                    <div class="code_background" style="background-color: rgb(239,240,241); font-weight:bold;">
+                        <pre class="prettyprint">
+<code>
+    #pragma GCC optimize("Ofast")
+    #pragma GCC optimize(1)
+    #pragma GCC optimize(2)
+    #pragma GCC optimize(3)
+    #pragma GCC target("popcnt")
+    #include &lt;bits/stdc++.h&gt;
+    using namespace std;
+    typedef long long ll;
+    typedef string str;
+    typedef pair&lt;ll,ll&gt; pii;
+    #define F first
+    #define S second
+    #define pb push_back
+    #define pq priority_queue
+    #define all(x) (x).begin(),(x).end()
+    #define bug(x) cerr &lt;&lt; (x) &lt;&lt; '\n'
+    #define yn(x) cout &lt;&lt; (x==1?"Yes\n":"No\n")
+    #define PI 3.14159265358979323
+    #define Ststone ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
+    const ll max_n=2e5+20,max_int=2147483647,mod1=1e9+7,mod2=998244353;
+    ll dx[8] = {1,0,0,-1,1,1,-1,-1};
+    ll dy[8] = {0,1,-1,0,1,-1,1,-1};
+    ll t,n,q,m,a,b,c,d,e,dp[5010][10][10],ans=0;
+    vector&lt;ll&gt; v,v1,v2,v3,v4;
+    char cc;
+    str s;
+    
+    ll f(ll x,ll y){
+        return ((a*(x&y))+(b*(x|y))+(c*(x^y)))%4;
+    }
+    
+    void solve(){
+        cin &gt;&gt; n;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+        for(ll goal=0;goal&lt;4;goal++){
+            for(ll i=0;i&lt;5010;i++){
+                for(ll j=0;j&lt;4;j++){
+                    for(ll k=0;k&lt;4;k++){
+                        dp[i][j][k] = 0;
+                    }
+                }
+            }
+            for(ll i=0;i&lt;4;i++){
+                for(ll j=0;j&lt;4;j++){
+                    if(f(i,j)==goal)
+                        dp[1][i][j] = 1;
+                }
+            }
+            for(ll i=2;i&lt;n;i++){
+                for(ll s1=0;s1&lt;4;s1++){
+                    for(ll s2=0;s2&lt;4;s2++){
+                        for(ll r1=0;r1&lt;4;r1++){
+                            for(ll r2=0;r2&lt;4;r2++){
+                                for(ll ak=0;ak&lt;4;ak++){
+                                    if(f(s1,ak)==s2&&f(r2,ak)==r1){
+                                        dp[i][s2][r2] += dp[i-1][s1][r1];
+                                        dp[i][s2][r2] %= mod2;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            for(ll i=0;i&lt;4;i++){
+                for(ll j=0;j&lt;4;j++){
+                    if(f(i,j)==goal)
+                        ans +=  dp[n-1][i][j];
+                        ans %= mod2;
+                }
+            }
+        }
+        cout &lt;&lt; ans &lt;&lt; '\n';
+    }
+    
+    int main(){
+        t = 1;
+        for(ll i=1;i&lt;=t;i++){
+            solve();
+        }
+    }
+</code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <a>post://</a><br><br>
+        <a>last update://</a><br><br>
+        <br><br>
+    </div>
+  </body>

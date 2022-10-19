@@ -5,6 +5,7 @@ var icon = [
 ]
 
 var datas = [
+    [0,"at00007","yukicoder No.2082 AND OR XOR","2022.10.19"],
     [0,"at00006","yukicoder No.2101 [Cherry Alpha N] ずっとこの数列だったらいいのに","2022.10.18"]
 ];
 

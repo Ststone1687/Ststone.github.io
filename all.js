@@ -8,6 +8,7 @@ var icon = [
 var datas = [
     [1,"at00001","About","2022.09.26"],//pin
     [1,"at00002","網頁設計專案實例","2022.09.27"],//pin
+    [0,"at00007","yukicoder No.2082 AND OR XOR","2022.10.19"],
     [0,"at00006","yukicoder No.2101 [Cherry Alpha N] ずっとこの数列だったらいいのに","2022.10.18"],
     [0,"at00004","Zerojudge h789 線段樹之石(Segment Tree Stone) 題解","2022.09.29"],
     [0,"at00003","Codeforces Round #823 (Div.2) 心得文","2022.09.27"],
