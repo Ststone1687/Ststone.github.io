@@ -49,16 +49,16 @@
                     </a><br>
                     <h3>想法</h3>
                     <a>
-                        這個問題可以用dp來處理，雖然$N=5000$，但是這題的複雜度不是$O(N^2)$而是$O(N×4^4)$。<br><br>
+                        這個問題可以用dp來處理，雖然$N=5000$，但是這題的複雜度不是$O(N^2)$而是$O(N×4^5)$。<br><br>
                         首先可以定義三個數列$P,X,R$，$X$代表任意的$\textbf{好的數列}$，然後滿足：<br><br>
                         $1.$ $P_{i-1} * X_i = P_i$<br><br>
                         $2.$ $R_i * X_i = R_{i-1}$<br><br>
+                        假設$(...((X_1*X_2)*X_3)*...)*X_N = Y$，接著窮舉$Y$。<br><br>
                         而若$R_1 = P_N = Y$，則$(...((X_1*X_2)*X_3)*...)*X_N = (...((X_N*X_{N-1})*X_{N-2})*...)*X_1$成立。<br><br>
                         於是可以定義狀態$dp[i][j][k]$代表在位置$i$時，$P_i=j$且$R_i=k$有解。<br><br>
-                        假設$(...((X_1*X_2)*X_3)*...)*X_N = Y$，接著窮舉$Y$。<br><br>
                         因為$P_1*X_2 = P_2$且$R_2*X_2 = R_1$，且$R_1 = Y$，然後可以列出初始狀態：<br><br>
                         $dp[1][j][k] = \begin{cases}1 & ,  j*k=Y \\ 0 & , Otherwise \end{cases}$<br><br>
-                        接著可以列出轉移$dp[i][P_i][R_i] += \begin{cases}dp[i-1][P_{i-1}][R_{i-1}] & ,  P_{i-1}*X_{i}=P_{i} \quad and \quad R_{i}*X_{i}=R_{i-1} \\ 0 & ,  Otherwise \end{cases}$<br><br>
+                        接著可以列出轉移$dp[i][P_i][R_i] = \sum \begin{cases}dp[i-1][P_{i-1}][R_{i-1}] & ,  P_{i-1}*X_{i}=P_{i} \quad and \quad R_{i}*X_{i}=R_{i-1} \\ 0 & ,  Otherwise \end{cases}$<br><br>
                         因為$P_{N-1}*X_N = P_N$且$R_{N}*X_N = R_{N-1}$，且$P_N = Y$。<br><br>
                         所以最後需要檢查所有的$P_{N-1} * R_{N-1} = Y$，把滿足條件的$dp[N-1][P_{N-1}][R_{N-1}]$加起來就會是答案了。<br><br>
                     </a><br>
@@ -156,7 +156,7 @@
         </div>
         <br>
         <a>post:2022/10/19</a><br><br>
-        <a>last update:2022/10/19</a><br><br>
+        <a>last update:2022/10/20</a><br><br>
         <br><br>
     </div>
   </body>
