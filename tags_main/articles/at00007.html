@@ -61,7 +61,7 @@
                         接著可以列出轉移$dp[i][P_i][R_i] = \sum \begin{cases}dp[i-1][P_{i-1}][R_{i-1}] & ,  P_{i-1}*X_{i}=P_{i} \quad and \quad R_{i}*X_{i}=R_{i-1} \\ 0 & ,  Otherwise \end{cases}$<br><br>
                         因為$P_{N-1}*X_N = P_N$且$R_{N}*X_N = R_{N-1}$，且$P_N = Y$。<br><br>
                         所以最後需要檢查所有的$P_{N-1} * R_{N-1} = Y$，把滿足條件的$dp[N-1][P_{N-1}][R_{N-1}]$加起來就會是答案了。<br><br>
-                    </a><br>
+                    </a><br><!---->
                     <br><br>
                     <h3>程式碼</h3>
                     <div class="code_background" style="background-color: rgb(239,240,241); font-weight:bold;">
